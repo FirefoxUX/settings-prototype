@@ -1,0 +1,74 @@
+@use "./tokens-shared.scss"
+@use "./text-and-typography.scss"
+@use "./tokens-brand.scss"
+
+@layer tokens-foundation
+  :root, :host(.anonymous-content-host)
+    /** Figma Only variables **/
+    --text-color: light-dark(var(--color-gray-100), var(--color-gray-05))
+    --border-color-overlay: light-dark(#F0F0F4, #52525E)
+    --border-color-default: light-dark(#CFCFD8, #3A3944)
+    --background-color-tabstrip: light-dark(#F0F0F4, #1C1B22)
+    --background-color-toolbar: light-dark(#F9F9FB, #2B2A33)
+    --background-color-canvas-v2: light-dark(#F9F9FB, #1C1B22)
+    --background-color-backdrop: rgba(0, 0, 0, 0.25)
+    --box-shadow-30: 0px 2px 6px 0px rgba(58, 57, 68, 0.20)
+
+@layer tokens-prefers-contrast
+  @media (prefers-contrast)
+    :root, :host(.anonymous-content-host)
+      /** Figma Only variables **/
+      --border-color-overlay: var(--border-color-default)
+
+@layer tokens-forced-colors
+  @media (forced-colors)
+    :root, :host(.anonymous-content-host)
+      /** Figma Only variables **/
+      --border-color-overlay: CanvasText
+      --border-color-default: CanvasText
+      --background-color-tabstrip: Canvas
+      --background-color-toolbar: Canvas
+      --background-color-canvas-v2: Canvas
+      --background-color-backdrop: rgba(0, 0, 0, 0.25)
+
+
+*, *::before, *::after
+  margin: 0
+  padding: 0
+  font-size: inherit
+  font-family: inherit
+
+body, html
+  height: 100%
+
+:root
+  appearance: none
+  background-color: var(--background-color-canvas-v2)
+
+:root:not(.system-font-size)
+  font-size: var(--font-size-root)
+
+a, .moz-link
+  color: var(--link-color)
+  text-decoration: underline
+  cursor: pointer
+  &:visited
+    color: var(--link-color-visited)
+  &:hover
+    color: var(--link-color-hover)
+  &:active
+    color: var(--link-color-active)
+    text-decoration: none
+
+.moz-card
+  background-color: var(--background-color-box)
+
+  border-radius: var(--border-radius-medium)
+  box-shadow: var(--box-shadow-30)
+  padding: var(--spacing-card)
+  &.padding
+    padding: utils.$size-24
+  &.layout
+    display: flex
+    flex-direction: column
+    gap: utils.$size-16
