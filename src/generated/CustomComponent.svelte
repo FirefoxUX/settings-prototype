@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" context="module">
   const components = import.meta.glob('../custom/*.svelte', {
     eager: true,
     import: 'default',
@@ -13,6 +13,10 @@
     {} as Record<string, string>,
   )
 
+  export const componentNames = Object.keys(componentsByName)
+</script>
+
+<script lang="ts">
   export let name: string
 </script>
 

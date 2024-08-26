@@ -16,17 +16,17 @@
   import SettingsCard from './SettingsCard.svelte'
   import CustomComponent from './CustomComponent.svelte'
 
-  function getPageData(pageId: string) {
-    return $configStore.config.pageDefinitions[pageId]
+  function getPageData(pageId: string, store: typeof $configStore) {
+    return store.config.pageDefinitions[pageId]
   }
 
   $: currentPageId = $configStore.path[$configStore.path.length - 1]
-  $: currentPageData = getPageData(currentPageId)
+  $: currentPageData = getPageData(currentPageId, $configStore)
 
   // remove last element
   $: breadcrumbs = $configStore.path.slice(0, -1).map((pageId) => {
     return {
-      label: getPageData(pageId).title,
+      label: getPageData(pageId, $configStore).title,
       onClick: () => configStore.popToPage(pageId),
     }
   })

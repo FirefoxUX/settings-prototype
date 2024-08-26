@@ -1,0 +1,437 @@
+{
+  "pageDefinitions": {
+    "your-firefox": {
+      "title": "Your Firefox",
+      "icon": "avatar-signed-out-16",
+      "content": []
+    },
+    "home-and-startup": {
+      "title": "Home & Startup",
+      "icon": "home-16",
+      "content": []
+    },
+    "search": {
+      "title": "Search",
+      "icon": "search-16",
+      "content": []
+    },
+    "privacy-and-security": {
+      "title": "Privacy & Security",
+      "icon": "lock-16",
+      "content": [
+        {
+          "kind": "custom-component",
+          "name": "PrivacyCard"
+        },
+        {
+          "kind": "card",
+          "header": {
+            "title": "Firefox Privacy Protection",
+            "description": "Firefox is designed to protect your privacy. Learn more about the features that help keep your personal information safe."
+          },
+          "content": [
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "item",
+                  "content": [
+                    {
+                      "kind": "branch",
+                      "pref": "browser.contentblocking.category",
+                      "conditions": [
+                        {
+                          "match": "standard",
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Standard (Default)",
+                              "description": "Blocks known trackers and cookies, helping protect your privacy without affecting most websites' functionality."
+                            }
+                          ]
+                        },
+                        {
+                          "match": "strict",
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Increased Protection",
+                              "description": "Uses advanced techniques to block more trackers and cookies, offering stronger privacy protection. However, it may cause some websites to not function properly."
+                            }
+                          ]
+                        },
+                        {
+                          "match": "custom",
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Custom",
+                              "description": "Choose which trackers and cookies to block."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "subpage-button",
+                  "pageId": "privacy-and-security-advanced",
+                  "props": {
+                    "label": "Advanced settings"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "card",
+          "content": [
+            {
+              "kind": "fieldset",
+              "props": {
+                "title": "Optional protections",
+                "content": [
+                  {
+                    "kind": "toggleable",
+                    "pref": "privacy.globalprivacycontrol.enabled",
+                    "disabled": {
+                      "pref": "browser.contentblocking.category",
+                      "matchValue": "strict"
+                    },
+                    "props": {
+                      "label": "Auto-dismiss cookie banners where possible"
+                    }
+                  },
+                  {
+                    "kind": "toggleable",
+                    "pref": "privacy.donottrackheader.enabled",
+                    "disabled": {
+                      "pref": "browser.contentblocking.category",
+                      "matchValue": "strict"
+                    },
+                    "props": {
+                      "label": "Send websites a “Do Not Track” request"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "kind": "card",
+          "header": {
+            "title": "DNS over HTTPS",
+            "description": "Do not let your internet provider monitor and control the websites you visit. Enable DNS over HTTPS to encrypt your DNS requests.",
+            "learnMore": "#"
+          },
+          "content": [
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "item",
+                  "content": [
+                    {
+                      "kind": "branch",
+                      "pref": "network.trr.mode",
+                      "conditions": [
+                        {
+                          "match": 0,
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Default Protection",
+                              "description": "Firefox decides when to use secure DNS to protect your privacy."
+                            }
+                          ]
+                        },
+                        {
+                          "match": 2,
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Increased Protection",
+                              "description": "You control when to use secure DNS and choose your provider."
+                            }
+                          ]
+                        },
+                        {
+                          "match": 3,
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Max Protection",
+                              "description": "Firefox will always use secure DNS. You'll see a security risk warning before we use your system DNS."
+                            }
+                          ]
+                        },
+                        {
+                          "match": 5,
+                          "content": [
+                            {
+                              "kind": "text",
+                              "heading": "Off",
+                              "description": "Use your default DNS resolver"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "subpage-button",
+                  "pageId": "dns-over-https",
+                  "props": {
+                    "label": "Advanced settings"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "privacy-and-security-advanced": {
+      "title": "Advanced settings",
+      "content": [
+        {
+          "kind": "card",
+          "header": {
+            "title": "Tracking protection"
+          },
+          "content": [
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "radio-group",
+                  "pref": "browser.contentblocking.category",
+                  "items": [
+                    {
+                      "value": "standard",
+                      "label": "Standard (Default)",
+                      "description": "Blocks known trackers and cookies, helping protect your privacy without affecting most websites' functionality."
+                    },
+                    {
+                      "value": "strict",
+                      "label": "Strict",
+                      "description": "Uses advanced techniques to block more trackers and cookies, offering stronger privacy protection. However, it may cause some websites to not function properly."
+                    },
+                    {
+                      "value": "custom",
+                      "label": "Custom",
+                      "description": "Choose which trackers and cookies to block.",
+                      "subpage": {
+                        "pageId": "accessibility",
+                        "subpageLabel": "Customize",
+                        "disabled": {
+                          "pref": "browser.contentblocking.category",
+                          "invert": true,
+                          "matchValue": "custom"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "subpage-button",
+                  "pageId": "accessibility",
+                  "props": {
+                    "label": "Website exceptions"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "card",
+          "header": {
+            "title": "HTTPS-Only Mode",
+            "description": "This is a good explanation for what any of this means!",
+            "learnMore": "#"
+          },
+          "content": [
+            {
+              "kind": "radio-group",
+              "pref": "dom.security.https_only_mode",
+              "items": [
+                {
+                  "value": 2,
+                  "label": "Only use HTTPS in all windows"
+                },
+                {
+                  "value": 1,
+                  "label": "Only use HTTPS in private windows"
+                },
+                {
+                  "value": 0,
+                  "label": "Try HTTPS first, but allow connections that are not secure"
+                }
+              ]
+            },
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "subpage-button",
+                  "pageId": "accessibility",
+                  "props": {
+                    "label": "Website exceptions"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "card",
+          "header": {
+            "title": "Certificates",
+            "description": "This is a good explanation for what any of this means!",
+            "learnMore": "#"
+          },
+          "content": [
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "subpage-button",
+                  "pageId": "accessibility",
+                  "props": {
+                    "label": "Advanced settings"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "autofill-and-passwords": {
+      "title": "Autofill & Passwords",
+      "icon": "login-16",
+      "content": []
+    },
+    "browsing": {
+      "title": "Browsing",
+      "icon": "cursor-arrow-16",
+      "content": []
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "icon": "accessibility-16",
+      "content": []
+    },
+    "languages": {
+      "title": "Languages",
+      "icon": "translation-16",
+      "content": []
+    },
+    "permissions-and-data": {
+      "title": "Permissions & Data",
+      "icon": "permission-16",
+      "content": []
+    },
+    "firefox-labs": {
+      "title": "Firefox Labs",
+      "icon": "labs-16",
+      "content": []
+    },
+    "about-firefox": {
+      "title": "About Firefox",
+      "icon": "firefox-flat-16",
+      "content": []
+    },
+    "extensions-and-themes": {
+      "title": "Extensions and themes",
+      "icon": "extension-16",
+      "content": []
+    },
+    "dns-over-https": {
+      "title": "DNS over HTTPS",
+      "content": [
+        {
+          "kind": "card",
+          "header": {
+            "title": "Advanced settings",
+            "description": "Domain Name System (DNS) over HTTPS sends your request for a domain name through an encrypted connection, providing a secure DNS and making it harder for others to see which website you’re about to access.",
+            "learnMore": "#"
+          },
+          "content": [
+            {
+              "kind": "fieldset",
+              "props": {
+                "title": "Use secure DNS",
+                "content": [
+                  {
+                    "kind": "box-group",
+                    "config": [
+                      {
+                        "kind": "radio-group",
+                        "pref": "network.trr.mode",
+                        "items": [
+                          {
+                            "value": 0,
+                            "label": "Default (when available)",
+                            "description": "???"
+                          },
+                          {
+                            "value": 1,
+                            "label": "Custom",
+                            "description": "???"
+                          },
+                          {
+                            "value": 2,
+                            "label": "Off",
+                            "description": "Use your default DNS resolver"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "box-group",
+              "config": [
+                {
+                  "kind": "subpage-button",
+                  "pageId": "accessibility",
+                  "props": {
+                    "label": "Exceptions"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sidebarNavigation": [
+    "your-firefox",
+    "home-and-startup",
+    "search",
+    "privacy-and-security",
+    "autofill-and-passwords",
+    "browsing",
+    "accessibility",
+    "languages",
+    "permissions-and-data",
+    "firefox-labs",
+    "__SEPARATOR__",
+    "about-firefox",
+    "extensions-and-themes"
+  ]
+}

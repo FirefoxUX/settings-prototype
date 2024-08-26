@@ -7,7 +7,7 @@
   export let learnMore: string | undefined = undefined
 </script>
 
-<div class="text">
+<div class="text" class:has-icon={iconName}>
   {#if iconName}
     <MozIcon name={iconName} />
   {/if}
@@ -31,15 +31,17 @@
 </div>
 
 <style lang="sass">
-.content
+.text
   text-align: start
   flex-grow: 1
   display: grid
   grid-template-columns: auto 1fr
   gap: utils.$size-2 utils.$size-8
   align-items: center
+  &.has-icon
+    h4, .content
+      grid-column: 2
 
 .content
-  grid-column: 2
   grid-row: 2
 </style>

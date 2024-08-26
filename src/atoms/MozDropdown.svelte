@@ -13,13 +13,14 @@
   export let disabled: boolean = false
   export let value: T | undefined
   export let items: SelectItem[]
+  export let fillWidth = false
 
   function noValue(val: T | undefined) {
     return val === undefined || val === ''
   }
 </script>
 
-<div class="wrapper">
+<div class="wrapper" class:fill={fillWidth}>
   <select {id} {disabled} bind:value on:change>
     {#if noValue(value)}
       <option value="" disabled selected hidden></option>
@@ -70,6 +71,11 @@
       background-color: var(--button-background-color-disabled)
       border-color: var(--button-border-color-disabled)
       color: var(--button-text-color-disabled)
+
+.fill
+  width: 100%
+  select
+    width: 100%
 
 .dropdown
   pointer-events: none

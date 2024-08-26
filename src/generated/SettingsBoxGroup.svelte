@@ -1,30 +1,36 @@
 <script lang="ts">
-  import SettingsBoxItem, {
-    type SettingsBoxGroupItemConfig,
-  } from './SettingsBoxItem.svelte'
+  import type { SettingsBoxItemConfig } from './SettingsBoxItem.svelte'
+  import SettingsBoxItem from './SettingsBoxItem.svelte'
   import SettingsBoxRadioGroup from './SettingsBoxRadioGroup.svelte'
+  import type { SettingsBoxSubpageButtonConfig } from './SettingsBoxSubpageButton.svelte'
+  import SettingsBoxSubpageButton from './SettingsBoxSubpageButton.svelte'
 
   export let config: (
     | ({
-        groupKind: 'item'
-      } & SettingsBoxGroupItemConfig)
+        kind: 'subpage-button'
+      } & SettingsBoxSubpageButtonConfig)
     | ({
-        groupKind: 'radio-group'
+        kind: 'item'
+      } & SettingsBoxItemConfig)
+    | ({
+        kind: 'radio-group'
       } & SettingsBoxRadioGroup['$$prop_def'])
   )[]
 
-  function removeGroupKind(item: any) {
-    const { groupKind, ...rest } = item
+  function removeKind(item: any) {
+    const { kind, ...rest } = item
     return rest
   }
 </script>
 
 <div class="btn-group">
   {#each config as item}
-    {#if item.groupKind === 'item'}
-      <SettingsBoxItem config={removeGroupKind(item)} />
-    {:else if item.groupKind === 'radio-group'}
-      <SettingsBoxRadioGroup {...removeGroupKind(item)} />
+    {#if item.kind === 'item'}
+      <SettingsBoxItem config={removeKind(item)} />
+    {:else if item.kind === 'subpage-button'}
+      <SettingsBoxSubpageButton config={removeKind(item)} />
+    {:else if item.kind === 'radio-group'}
+      <SettingsBoxRadioGroup {...removeKind(item)} />
     {/if}
   {/each}
 </div>

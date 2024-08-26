@@ -6,6 +6,8 @@
   export let type: 'default' | 'primary' | 'destructive' | 'ghost' = 'default'
   export let iconName: string | undefined = undefined
   export let disabled: boolean = false
+  export let title: string | undefined = undefined
+  export let ariaLabel: string | undefined = undefined
 </script>
 
 <button
@@ -13,6 +15,8 @@
   class:iconName
   class:icon-only={!SLOTS?.default}
   {disabled}
+  {title}
+  aria-label={ariaLabel}
   on:click
   on:blur
   on:focus

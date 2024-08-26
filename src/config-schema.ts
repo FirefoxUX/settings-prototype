@@ -1,6 +1,6 @@
 import type { PageContent } from './generated/SettingsPage.svelte'
 
-export const SEPARATOR = Symbol('separator')
+export const SEPARATOR = '__SEPARATOR__'
 
 export type Config = {
   pageDefinitions: { [id: string]: PageDefinition }

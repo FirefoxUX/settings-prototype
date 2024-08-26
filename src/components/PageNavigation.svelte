@@ -4,6 +4,7 @@
 
   import configStore, { SEARCH_PAGE_ID } from '@src/ConfigStore'
   import { SEPARATOR } from '@src/config-schema'
+  import MozInput from '@src/atoms/MozInput.svelte'
 
   $: currentRootPage = $configStore.path[0]
 
@@ -51,7 +52,8 @@
 
 <nav>
   <h1><MozIcon svg={FirefoxLogo} />Settings</h1>
-  <input type="text" placeholder="Search" />
+
+  <MozInput value="" iconName="search-16" placeholder="Search" clearButton />
 
   <div class="navigation-group" role="tablist" aria-orientation="vertical">
     {#each $configStore.config.sidebarNavigation as sidebarItem, i}

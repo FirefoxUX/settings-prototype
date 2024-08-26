@@ -1,22 +1,20 @@
 <script lang="ts" context="module">
+  import SubpageButton from '@src/components/SubpageButton.svelte'
   import SettingsBox from '@src/components/SettingsBox.svelte'
   import prefStore from '@src/PrefStore'
   import configStore from '@src/ConfigStore'
 
-  export type SettingsBoxItemConfig = {
+  export type SettingsBoxSubpageButtonConfig = {
+    pageId: string
     disabled?: DisabledByPref
-    pageId?: string
-    props?: SettingsBox['$$prop_def']
-    content: CardContentConfig[]
+    props: SubpageButton['$$prop_def']
   }
 </script>
 
 <script lang="ts">
-  import type { CardContentConfig } from '@src/generated/CardContent.svelte'
-  import CardContent from '@src/generated/CardContent.svelte'
   import { boolInv, type DisabledByPref } from '@src/utils'
 
-  export let config: SettingsBoxItemConfig
+  export let config: SettingsBoxSubpageButtonConfig
 
   function isDisabled(
     config?: DisabledByPref,
@@ -30,16 +28,12 @@
   }
 </script>
 
-<SettingsBox
+<SubpageButton
   {...config.props}
-  subpageDisabled={!!config?.disabled?.pref &&
+  disabled={!!config?.disabled?.pref &&
     isDisabled(config?.disabled, $prefStore[config.disabled.pref])}
-  on:click={() => config.pageId && configStore.goToSubpage(config.pageId)}
->
-  {#each config.content as content}
-    <CardContent config={content} />
-  {/each}
-</SettingsBox>
+  on:click={() => configStore.goToSubpage(config.pageId)}
+/>
 
 <style lang="sass">
 
