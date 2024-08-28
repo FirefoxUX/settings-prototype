@@ -1,6 +1,12 @@
+import UsertestStore, { type UserTestData } from './UsertestStore'
 import type { Config } from './config-schema'
 import config from './config.json'
 import { writable } from 'svelte/store'
+
+let userTestData: UserTestData
+UsertestStore.subscribe((data) => {
+  userTestData = data
+})
 
 export const SEARCH_PAGE_ID = 'settings-search'
 
@@ -10,13 +16,23 @@ export type ConfigStoreData = {
 }
 
 function validatePageId(pageId: string, config: Config) {
+  if (
+    userTestData.enabled &&
+    userTestData.restrictPages &&
+    !userTestData.allowedPages.includes(pageId)
+  ) {
+    return false
+  }
+
   return !!config.pageDefinitions[pageId]
 }
 
 function createStore() {
   const { subscribe, set, update } = writable<ConfigStoreData>({
     config: config as Config,
-    path: [config.sidebarNavigation[0] as string],
+    path: userTestData.enabled
+      ? userTestData.startPath
+      : [config.sidebarNavigation[0] as string],
   })
 
   const goToPage = (pageId: string) => {
@@ -40,7 +56,7 @@ function createStore() {
   const popToPage = (pageId: string) => {
     update((store) => {
       const index = store.path.indexOf(pageId)
-      if (index !== -1) {
+      if (index !== -1 && validatePageId(pageId, store.config)) {
         store.path = store.path.slice(0, index + 1)
       }
       return store

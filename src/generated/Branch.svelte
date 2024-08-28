@@ -22,6 +22,4 @@
   {/if}
 {/each}
 
-<style lang="sass">
 
-</style>

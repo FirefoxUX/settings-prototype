@@ -17,7 +17,6 @@
   let editValue: string | undefined = undefined
 
   function valueHasBeenChanged(name: string, prefStore: any) {
-    console.log(name, prefStore[name], defaultPrefs[name])
     return defaultPrefs[name] !== prefStore[name]
   }
 

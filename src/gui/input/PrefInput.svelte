@@ -56,6 +56,4 @@
 
 <MozDropdown {id} bind:value items={options} fillWidth />
 
-<style lang="sass">
 
-</style>

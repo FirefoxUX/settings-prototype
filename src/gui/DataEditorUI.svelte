@@ -5,12 +5,17 @@
   import Navigation from './NavigationEditor.svelte'
   import PageEditor from './PageEditor.svelte'
   import Export from './Export.svelte'
+  import UserTestEditor from './UserTestEditor.svelte'
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher()
 
   const SCREENS = [
     { value: 'prefs', label: 'Prefs' },
     { value: 'pages', label: 'Pages' },
     { value: 'navigation', label: 'Navigation' },
     { value: 'export', label: 'Config export' },
+    { value: 'usertest', label: 'User Testing' },
   ]
 
   let selectedScreen = 'pages'
@@ -23,7 +28,7 @@
       <MozDropdown id="dropdown" bind:value={selectedScreen} items={SCREENS} />
     </div>
 
-    <MozButton type="ghost" iconName="close-16" />
+    <MozButton type="ghost" iconName="close-16" on:click={() => dispatch('close')} />
   </nav>
   <main>
     {#if selectedScreen === 'prefs'}
@@ -34,6 +39,8 @@
       <Navigation />
     {:else if selectedScreen === 'export'}
       <Export />
+    {:else if selectedScreen === 'usertest'}
+      <UserTestEditor />
     {/if}
   </main>
 </section>

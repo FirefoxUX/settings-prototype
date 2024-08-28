@@ -1,6 +1,7 @@
 <script lang="ts">
   import illustration from '@src/assets/illustrations/ps-cyberfox.png'
   import MozIcon from '@src/atoms/MozIcon.svelte'
+  import MozLink from '@src/atoms/MozLink.svelte'
 </script>
 
 <div class="moz-card padding">
@@ -20,7 +21,9 @@
         >
       </li>
     </ul>
-    <a href="//example.com">Learn more about how Firefox protects you</a>
+    <MozLink href="//example.com"
+      >Learn more about how Firefox protects you</MozLink
+    >
   </div>
   <img src={illustration} alt="Fox" role="presentation" />
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import MozIcon from '@src/atoms/MozIcon.svelte'
+  import MozLink from '@src/atoms/MozLink.svelte'
 
   export let title: string
   export let iconName: string | undefined = undefined
@@ -17,11 +18,7 @@
   {#if description || learnMore}
     <p>
       {#if description}{description}{/if}
-      {#if learnMore}<a
-          href={learnMore}
-          target="_blank"
-          rel="noopener noreferrer">Learn more</a
-        >{/if}
+      {#if learnMore}<MozLink href={learnMore} />{/if}
     </p>
   {/if}
 </div>

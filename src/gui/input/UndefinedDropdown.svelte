@@ -52,6 +52,4 @@
   on:change={() => updateInputValue(inputValue)}
 />
 
-<style lang="sass">
 
-</style>

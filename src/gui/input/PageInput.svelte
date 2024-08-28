@@ -1,14 +1,13 @@
 <script lang="ts">
   import MozDropdown from '@src/atoms/MozDropdown.svelte'
   import configStore from '@src/ConfigStore'
-  import UndefinedDropdown from './UndefinedDropdown.svelte'
   import { removeObjectKey } from '@src/utils'
 
   type PageList = (typeof $configStore)['config']['pageDefinitions']
 
   export let id: string
-  export let valueObj: Record<string, unknown | undefined>
-  export let valueKey: string
+  export let valueObj: any
+  export let valueKey: any
   export let canBeUndefined: boolean = false
 
   interface SelectItem {
@@ -65,6 +64,4 @@
   on:change={() => updateInputValue(inputValue)}
 />
 
-<style lang="sass">
 
-</style>

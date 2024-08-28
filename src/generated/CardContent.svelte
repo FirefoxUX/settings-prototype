@@ -82,6 +82,3 @@
   <RadioGroup {...stripKind(config)} />
 {/if}
 
-<style lang="sass">
-
-</style>

@@ -223,7 +223,6 @@
     // find in presets, add the data to the array
     const preset = PRESETS.find((preset) => preset.name === addValue)
     const prop = Object.values(allProps).find((prop) => prop !== undefined)
-    console.log(preset, prop)
     if (preset && prop) {
       prop.push({ ...preset.data })
       configStore.forceUpdate()
@@ -863,12 +862,12 @@ section
 .heading
   display: flex
   align-items: center
-  > p
-    flex: 1
   padding: utils.$size-4
   padding-inline-start: utils.$size-8
   border-bottom: 1px solid var(--border-color-default)
   background-color: color-mix(in srgb, var(--border-color-default) 10%, transparent 90%)
+  > p
+    flex: 1
 
 .content
   padding: utils.$size-8

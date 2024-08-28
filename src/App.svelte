@@ -24,7 +24,7 @@
     </main>
   </div>
   {#if showDataEditor}
-    <DataEditorUI />
+    <DataEditorUI on:close={() => showDataEditor = false} />
   {/if}
 </div>
 

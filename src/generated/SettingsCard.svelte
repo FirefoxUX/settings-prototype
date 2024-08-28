@@ -28,6 +28,4 @@
   {/each}
 </section>
 
-<style lang="sass">
 
-</style>

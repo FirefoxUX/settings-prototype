@@ -1,5 +1,11 @@
+import UsertestStore, { type UserTestData } from './UsertestStore'
 import prefs from './prefs.json'
 import { writable } from 'svelte/store'
+
+let userTestData: UserTestData
+UsertestStore.subscribe((data) => {
+  userTestData = data
+})
 
 export const defaultPrefs = prefs as PrefData
 
@@ -36,6 +42,7 @@ function createStore() {
       return store
     })
   }
+
 
   return {
     subscribe,

@@ -35,6 +35,4 @@
   on:click={() => configStore.goToSubpage(config.pageId)}
 />
 
-<style lang="sass">
 
-</style>

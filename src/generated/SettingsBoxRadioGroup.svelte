@@ -64,6 +64,4 @@
   {/each}
 </div>
 
-<style lang="sass">
 
-</style>

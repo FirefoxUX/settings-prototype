@@ -1,4 +1,5 @@
 <script lang="ts">
+  import MozLink from '@src/atoms/MozLink.svelte'
   import MozToggleable from '@src/atoms/MozToggleable.svelte'
   import { generateId } from '@src/utils'
 
@@ -28,19 +29,13 @@
   <label for={controlId} class:text-bold={description}>
     {label}
     {#if !description && learnMore}
-      <a href={learnMore} target="_blank" rel="noopener noreferrer"
-        >Learn more</a
-      >
+      <MozLink href={learnMore} />
     {/if}
   </label>
   {#if description || learnMore}
     <p>
       {#if description}{description}{/if}
-      {#if learnMore}<a
-          href={learnMore}
-          target="_blank"
-          rel="noopener noreferrer">Learn more</a
-        >{/if}
+      {#if learnMore}<MozLink href={learnMore} />{/if}
     </p>
   {/if}
 </div>
@@ -58,7 +53,4 @@ p
   color: var(--text-color-deemphasized)
   grid-column: 2
   grid-row: 2
-
-a
-  margin-inline-start: utils.$size-4
 </style>

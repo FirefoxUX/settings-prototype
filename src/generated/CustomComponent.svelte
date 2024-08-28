@@ -21,7 +21,3 @@
 </script>
 
 <svelte:component this={componentsByName[name]} />
-
-<style lang="sass">
-
-</style>

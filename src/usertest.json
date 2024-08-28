@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "startPath": [
+    "privacy-and-security"
+  ],
+  "restrictPages": true,
+  "allowedPages": [
+    "privacy-and-security",
+    "privacy-and-security-advanced",
+    "dns-over-https"
+  ],
+  "allowExternalLinks": false
+}

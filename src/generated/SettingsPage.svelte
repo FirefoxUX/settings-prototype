@@ -45,7 +45,3 @@
     <SettingsCard {content} />
   {/if}
 {/each}
-
-<style lang="sass">
-
-</style>

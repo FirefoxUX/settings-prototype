@@ -53,7 +53,7 @@
 <nav>
   <h1><MozIcon svg={FirefoxLogo} />Settings</h1>
 
-  <MozInput value="" iconName="search-16" placeholder="Search" clearButton />
+  <MozInput disabled value="" iconName="search-16" placeholder="Search" clearButton />
 
   <div class="navigation-group" role="tablist" aria-orientation="vertical">
     {#each $configStore.config.sidebarNavigation as sidebarItem, i}

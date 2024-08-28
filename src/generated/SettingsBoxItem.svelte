@@ -41,6 +41,4 @@
   {/each}
 </SettingsBox>
 
-<style lang="sass">
 
-</style>

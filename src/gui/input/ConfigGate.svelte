@@ -51,11 +51,11 @@ section
   font-weight: bold
   display: flex
   align-items: center
-  > label
-    flex: 1
   padding: utils.$size-4
   padding-inline-start: utils.$size-8
   background-color: color-mix(in srgb, var(--border-color-default) 5%, transparent 90%)
+  > label
+    flex: 1
   &.has-content
     border-bottom: 1px dashed var(--border-color-default)
 
