@@ -43,10 +43,10 @@
   border-radius: var(--border-radius-medium)
   > :global(:not(:last-child)), :global(*[role="radiogroup"] > :not(:last-child))
     border-bottom: 1px solid var(--border-color-default)
-  > :global(:not(:first-child) .subpage-button), > :global(:not(:first-child).subpage-button)
+  :global(:not(:first-child) .subpage-button), > :global(:not(:first-child).subpage-button)
     border-top-right-radius: 0
     border-top-left-radius: 0
-  > :global(:not(:last-child) .subpage-button), > :global(:not(:last-child).subpage-button)
+  :global(:not(:last-child) .subpage-button), > :global(:not(:last-child).subpage-button)
     border-bottom-right-radius: 0
     border-bottom-left-radius: 0
 </style>
